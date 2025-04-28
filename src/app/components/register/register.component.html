@@ -1,0 +1,21 @@
+<div id="rejestracja">
+  <div id="title">
+    <h1 class="title">AKADEMIA WOJSK LĄDOWYCH</h1>
+  </div>
+  <div class="register-panel">
+    <form (ngSubmit)="onSubmit()" id="login-form" #loginform="ngForm">
+      <h2 class="formTitle">Rejestracja</h2>
+      <label for="firstName">Imie</label><br>
+      <input id="firstName" name="firstName" placeholder="Imie" type="text" required [(ngModel)]="firstName"><br>
+      <label for="lastName">Nazwisko</label><br>
+      <input id="lastName" name="lastName" placeholder="Nazwisko" type="text" required [(ngModel)]="lastName"><br>
+      <label for="username">Nazwa użytkownika</label><br>
+      <input id="username" name="username" placeholder="Login" type="text" required [(ngModel)]="username"><br>
+      <label for="email">E-mail</label><br>
+      <input id="email" name="email" placeholder="Email" type="email" required [(ngModel)]="email"><br>
+      <label for="password">Hasło</label><br>
+      <input id="password" name="password" placeholder="Hasło" type="text" required [(ngModel)]="password"><br><br>
+      <input id="submit" type="submit" value="Zarejestruj">
+    </form>
+  </div>
+</div>

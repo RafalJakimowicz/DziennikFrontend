@@ -1,4 +1,4 @@
-#logowanie{
+#rejestracja{
   background-color: rgb(2, 87, 2);
   position: absolute;
   top: 0;
@@ -7,11 +7,13 @@
   height: 100%;
 }
 .title{
-  margin-top: 150px;
+  margin-top: 100px;
+  margin-bottom: 100px;
   text-align: center;
   color: #f5f6f7;
+  font-size: 60px;
 }
-.login-panel {
+.register-panel {
   background: #1b1b32;
   color: aliceblue;
   padding: 2rem;
@@ -23,13 +25,13 @@
   margin: auto auto;
 }
 
-#username, #password{
-  width: 50%;
-  padding: 0.5rem;
+#username, #password, #email, #firstName, #lastName {
+  width: 70%;
+  padding: 0.75rem;
   margin: auto auto;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 #submit{
@@ -66,5 +68,9 @@
   background-color: #0057b33b;
 }
 h2{
-  font-size: 25px;
+  font-size: 35px;
+}
+
+label{
+  font-size: 1.5rem;
 }

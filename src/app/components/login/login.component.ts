@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,5 +16,12 @@ export class LoginComponent {
   onSubmit(){
     console.log(this.password);
     console.log(this.username);
+  }
+
+  constructor(private router: Router) {
+  }
+
+  redirectToRegister(){
+    this.router.navigate(['/register']);
   }
 }
