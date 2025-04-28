@@ -3,6 +3,7 @@
     <h1 class="title">AKADEMIA WOJSK LĄDOWYCH</h1>
   </div>
   <div class="register-panel">
+    <button id="back-button" (click)="redirectTologin()">⟵</button>
     <form (ngSubmit)="onSubmit()" id="login-form" #loginform="ngForm">
       <h2 class="formTitle">Rejestracja</h2>
       <label for="firstName">Imie</label><br>

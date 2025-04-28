@@ -8,17 +8,21 @@ import {Router} from '@angular/router';
     FormsModule
   ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
   constructor(private router: Router) {}
-  onSubmit(){
 
-  }
   firstName: any;
   lastName: any;
   password: any;
   username: any;
   email: any;
 
+  onSubmit() {
+  }
+
+  redirectTologin() {
+    this.router.navigate(['/login']);
+  }
 }
