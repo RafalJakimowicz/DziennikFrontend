@@ -1,0 +1,15 @@
+<div id="logowanie">
+  <div id="title">
+    <h1 class="title">AKADEMIA WOJSK LĄDOWYCH</h1>
+  </div>
+  <div class="login-panel">
+    <form (ngSubmit)="onSubmit()" id="login-form" #loginform="ngForm">
+      <h2 class="formTitle">Logowanie</h2>
+      <label for="username">Nazwa użytkownika lub e-mail</label><br>
+      <input id="username" name="username" placeholder="Login" type="text" required [(ngModel)]="username"><br>
+      <label for="password">Hasło</label><br>
+      <input id="password" name="password" placeholder="Hasło" type="password" required [(ngModel)]="password"><br><br>
+      <input id="submit" type="submit" value="Zaloguj">
+    </form>
+  </div>
+</div>
