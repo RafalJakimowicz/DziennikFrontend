@@ -1,5 +1,10 @@
 #rejestracja{
-  background-color: rgb(2, 87, 2);
+  background:
+    radial-gradient(circle at 15% 20%, #556B2F 20%, transparent 40%),
+    radial-gradient(circle at 70% 25%, #6B8E23 20%, transparent 40%),
+    radial-gradient(circle at 40% 75%, #8F9779 20%, transparent 40%),
+    radial-gradient(circle at 80% 80%, #556B2F 20%, transparent 40%),
+    linear-gradient(90deg, #4f772d, #90a955);
   position: absolute;
   top: 0;
   left: 0;
@@ -50,6 +55,11 @@
 
 #submit:hover {
   background-color: #0057b33b;
+  transform: scale(1.01);
+}
+
+#submit:active {
+  transform: scale(0.95);
 }
 
 #register{
@@ -91,4 +101,9 @@ label{
 #back-button:hover {
   background-color: white;
   color: black;
+  transform: scale(1.01);
+}
+
+#back-button:active {
+  transform: scale(0.95);
 }
