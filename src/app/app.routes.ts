@@ -5,8 +5,8 @@ export const routes: Routes = [
     path: '',
     pathMatch: 'full',
     loadComponent: () => import(
-      './components/login/login.component'
-      ).then((m) => m.LoginComponent),
+      './components/page/home/home.component'
+      ).then((m) => m.HomeComponent),
   },
   {
     path:'register',
