@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './grades.component.css'
 })
 export class GradesComponent {
-
+  groups =[1,2,3,4,5,6,7,8,9,0];
 }

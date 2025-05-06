@@ -1,1 +1,18 @@
-<p>grades works!</p>
+<div id="grades-container">
+  <aside class="sidebar">
+    <nav>
+      <ul>
+        @for(group of groups; track groups){
+          <li><a>{{group}}</a></li>
+        }
+        <li><a >Oceny</a></li>
+        <li><a >Plan lekcji</a></li>
+        <li><a >Obecności</a></li>
+        <li><a >Strona główna</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main class="main-panel">
+    <p>Grades</p>
+  </main>
+</div>

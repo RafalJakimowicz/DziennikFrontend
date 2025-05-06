@@ -4,40 +4,20 @@
   <aside class="sidebar">
     <nav>
       <ul>
-        <li><a routerLink="/grades" routerLinkActive="active">Oceny</a></li>
-        <li><a routerLink="/schedule" routerLinkActive="active">Plan lekcji</a></li>
-        <li><a routerLink="/attendance" routerLinkActive="active">Obecności</a></li>
+        <li><a (click)="activeTab = 'grades'" [class.active]="activeTab==='grades'">Oceny</a></li>
+        <li><a (click)="activeTab = 'calendar'" [class.active]="activeTab==='calendar'">Plan lekcji</a></li>
+        <li><a (click)="activeTab = 'presence'" [class.active]="activeTab==='presence'">Obecności</a></li>
+        <li><a (click)="activeTab = 'menu'" [class.active]="activeTab==='menu'">Strona główna</a></li>
       </ul>
     </nav>
   </aside>
 
-  <!-- Main Panel -->
-  <main class="main-panel">
-    <!-- Panel Header -->
-    <section class="panel-header">
-      <h1>Akademia wojsk lądowych</h1>
-      <p>Przegląd najważniejszych informacji</p>
-    </section>
-
-    <!-- Panel Content with Cards -->
-    <section class="panel-content">
-      <article class="card grades-card">
-        <h2>Przegląd ocen</h2>
-        <p>Ostatnie wpisane oceny, średnia klasowa, statystyki.</p>
-        <button class="btn">Zobacz szczegóły</button>
-      </article>
-
-      <article class="card schedule-card">
-        <h2>Plan lekcji</h2>
-        <p>Dzisiejsze zajęcia, harmonogram tygodnia.</p>
-        <button class="btn">Zobacz plan</button>
-      </article>
-
-      <article class="card attendance-card">
-        <h2>Obecności</h2>
-        <p>Dodaj lub sprawdź obecność uczniów.</p>
-        <button class="btn">Zarządzaj obecnościami</button>
-      </article>
-    </section>
-  </main>
+  <div style="flex: 1">
+    <ng-container [ngSwitch]="activeTab" style="width: 100%">
+      <app-presence-table *ngSwitchCase="'presence'"/>
+      <app-classes-calendar *ngSwitchCase="'calendar'"/>
+      <app-grades *ngSwitchCase="'grades'"/>
+      <app-menu *ngSwitchCase="'menu'" (tabChange)="setActive($event)"/>
+    </ng-container>
+  </div>
 </div>

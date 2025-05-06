@@ -1,0 +1,29 @@
+<!-- Main Panel -->
+<main class="main-panel">
+  <!-- Panel Header -->
+  <section class="panel-header">
+    <h1>Akademia wojsk lądowych</h1>
+    <p>Przegląd najważniejszych informacji</p>
+  </section>
+
+  <!-- Panel Content with Cards -->
+  <section class="panel-content">
+    <article class="card grades-card">
+      <h2>Przegląd ocen</h2>
+      <p>Ostatnie wpisane oceny, średnia klasowa, statystyki.</p>
+      <button class="btn" (click)="switchTabs('grades')">Zobacz szczegóły</button>
+    </article>
+
+    <article class="card schedule-card">
+      <h2>Plan lekcji</h2>
+      <p>Dzisiejsze zajęcia, harmonogram tygodnia.</p>
+      <button class="btn" (click)="switchTabs('calendar')">Zobacz plan</button>
+    </article>
+
+    <article class="card attendance-card">
+      <h2>Obecności</h2>
+      <p>Dodaj lub sprawdź obecność uczniów.</p>
+      <button class="btn" (click)="switchTabs('presence')">Zarządzaj obecnościami</button>
+    </article>
+  </section>
+</main>
