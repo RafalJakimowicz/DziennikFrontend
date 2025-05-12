@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { User } from '../user/user-api.service';
+import { User, UserApiService } from '../user/user-api.service';
 import { WebTokenService, Token } from '../token/web-token.service';
 import {Observable} from 'rxjs';
 
@@ -33,6 +33,7 @@ export class AuthApiService {
                user_login: string,
                user_password: string,): Observable<Token>{
     const payload: User = {
+      id: NaN,
       name: user_firstName,
       surname: user_lastName,
       email: user_email,

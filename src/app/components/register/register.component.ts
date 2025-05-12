@@ -3,6 +3,7 @@ import {FormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 import {WebTokenService} from '../../services/token/web-token.service';
 import {AuthApiService} from '../../services/auth/auth-api.service';
+import {User, UserApiService} from '../../services/user/user-api.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ import {AuthApiService} from '../../services/auth/auth-api.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  constructor(private router: Router, private tokenService: WebTokenService, private authService: AuthApiService) {}
+  constructor(private router: Router, private tokenService: WebTokenService, private authService: AuthApiService, private userService: UserApiService) {}
 
   firstName: any;
   lastName: any;
@@ -32,6 +33,8 @@ export class RegisterComponent {
       next: token => {
         this.tokenService.setToken(token);
         console.log('After register:', this.tokenService.getToken());
+        this.userService.getMyUser().subscribe({next: user => {this.tokenService.setUserId(user.id)}})
+        this.redirectToHome();
       },
       error: error => {
         console.log(error);
@@ -41,5 +44,9 @@ export class RegisterComponent {
 
   redirectTologin() {
     this.router.navigate(['/login']);
+  }
+
+  redirectToHome(){
+    this.router.navigate(['/home']);
   }
 }

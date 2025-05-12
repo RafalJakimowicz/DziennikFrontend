@@ -2,13 +2,9 @@
   <aside class="sidebar">
     <nav>
       <ul>
-        @for(group of groups; track groups){
-          <li><a>{{group}}</a></li>
+        @for(group of groupsList; track groupsList){
+          <li><a>{{group.code}}</a></li>
         }
-        <li><a >Oceny</a></li>
-        <li><a >Plan lekcji</a></li>
-        <li><a >Obecności</a></li>
-        <li><a >Strona główna</a></li>
       </ul>
     </nav>
   </aside>
