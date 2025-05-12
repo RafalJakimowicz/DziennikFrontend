@@ -1,14 +1,114 @@
-#grades-container {
+:host {
+  display: block;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f6f8fc;
+  padding: 20px;
+}
+
+#grades-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#grades-header {
+  background-color: #3b6eea;
+  color: white;
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+#grades-panel {
+  background-color: white;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
   display: flex;
-  flex-direction: row;
-  height: 100vh;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.sidebar{
-  width: 200px;
-  padding: 1rem;
+#grades-panel label {
+  font-weight: bold;
+  margin-right: 5px;
 }
 
-.main-panel{
-  flex: 1;
+#group-select {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+#add-grade-button {
+  padding: 10px 20px;
+  background-color: #3b6eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#add-grade-button:hover {
+  background-color: #2f57c8;
+}
+
+#grades-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+#grades-table th,
+#grades-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+  font-size: 16px;
+}
+
+#grades-table th {
+  background-color: #f0f3f9;
+  font-weight: bold;
+  color: #333;
+}
+
+.grade-badge {
+  margin-right: 8px;
+  display: inline-block;
+  min-width: 24px;
+  text-align: center;
+  background-color: #e5ecff;
+  color: #2d3a76;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 600px) {
+  #grades-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #grades-table th,
+  #grades-table td {
+    display: block;
+    width: 100%;
+  }
+
+  #grades-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
 }
