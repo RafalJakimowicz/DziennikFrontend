@@ -1,4 +1,45 @@
-<p>presence-table works!</p>
-@for (l of lista; track lista){
-  <p> numer: {{l}}</p>
-}
+<section id="control-wrapper">
+  <div id="control-header">Obecność</div>
+
+  <div id="control-panel">
+    <div>
+      <label for="group-select">Klasa</label>
+      <select id="group-select" [(ngModel)]="selectedGroup">
+        <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="attendance-date">Data</label>
+      <input type="date" id="attendance-date" [(ngModel)]="selectedDate">
+    </div>
+
+    <div>
+      <button id="submit-button" (click)="submitAttendance()">Zapisz</button>
+    </div>
+  </div>
+</section>
+
+<section id="attendance-list">
+  <table id="attendance-table">
+    <thead>
+    <tr>
+      <th>Lp.</th>
+      <th>Uczeń</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of students; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ student.name }}</td>
+      <td>
+        <select class="select-status" [(ngModel)]="student.status" name="status-{{ i }}">
+          <option value="obecny">Obecny</option>
+          <option value="nieobecny">Nieobecny</option>
+        </select>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>
