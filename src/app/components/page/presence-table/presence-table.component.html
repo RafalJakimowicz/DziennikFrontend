@@ -20,12 +20,12 @@
 
     <div>
       <label for="lesson-name">Temat Zajęć</label>
-      <input type="text" id="lesson-name" value="Temat" [value]="lessonSubject">
+      <input type="text" id="lesson-name" placeholder="Temat" name="lessonSubject" [(ngModel)]="lessonSubject">
     </div>
 
     <div>
       <label for="room-number">Numer Sali</label>
-      <input type="text" id="room-number" value="Numer Sali" [value]="lessonRoom">
+      <input type="text" id="room-number" placeholder="Numer Sali" name="lessonRoom" [(ngModel)]="lessonRoom">
     </div>
 
   </div>
@@ -46,8 +46,8 @@
       <td>{{ student.name }} {{student.surname}}</td>
       <td>
         <select class="select-status" [(ngModel)]="student.status" name="status-{{ i }}">
-          <option value="obecny">Obecny</option>
-          <option value="nieobecny">Nieobecny</option>
+          <option value="OBECNY">Obecny</option>
+          <option value="NIEOBECNY">Nieobecny</option>
         </select>
       </td>
     </tr>

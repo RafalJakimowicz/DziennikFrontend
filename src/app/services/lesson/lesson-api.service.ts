@@ -16,7 +16,7 @@ export interface Lesson{
   providedIn: 'root'
 })
 export class LessonApiService {
-  baseUrl = 'http://localhost:8080/api/lessons';
+  baseUrl = 'http://localhost:8080/api/private/lessons';
   header = {
     'Content-Type': 'application/json',
     'Authorization': `Bearer`

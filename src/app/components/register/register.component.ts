@@ -33,8 +33,11 @@ export class RegisterComponent {
       next: token => {
         this.tokenService.setToken(token);
         console.log('After register:', this.tokenService.getToken());
-        this.userService.getMyUser().subscribe({next: user => {this.tokenService.setUserId(user.id)}})
-        this.redirectToHome();
+        this.userService.getMyUser().subscribe({next: user =>
+          {
+            this.tokenService.setUserId(user.id);
+            this.redirectToHome();
+          }});
       },
       error: error => {
         console.log(error);
