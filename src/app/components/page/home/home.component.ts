@@ -5,6 +5,7 @@ import {ClassesCalendarComponent} from '../classes-calendar/classes-calendar.com
 import {GradesComponent} from '../grades/grades.component';
 import {MenuComponent} from '../menu/menu.component';
 import {WebTokenService} from '../../../services/token/web-token.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -24,10 +25,11 @@ export class HomeComponent {
 
   setActive(tab: 'menu' | 'grades' | 'presence' | 'calendar'){
     this.activeTab = tab;
-    this.token.setToken({token: "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIwNjcwYTI3Yy04OTgzLTRkY2YtYjY3My00ODEyZGE0ZTBiZTYiLCJzdWIiOiJqayIsImlhdCI6MTc0NzA4MjcyNiwiZXhwIjoxNzQ3MTY5MTI2fQ.1bDoEtO46J-uOHaHTr8E5j9zvfmSh2QJjNmucM6lVw8"})
   }
-  constructor(private token: WebTokenService) {
-    token.setToken({token: "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIwNjcwYTI3Yy04OTgzLTRkY2YtYjY3My00ODEyZGE0ZTBiZTYiLCJzdWIiOiJqayIsImlhdCI6MTc0NzA4MjcyNiwiZXhwIjoxNzQ3MTY5MTI2fQ.1bDoEtO46J-uOHaHTr8E5j9zvfmSh2QJjNmucM6lVw8"})
+  constructor(private token: WebTokenService, private router: Router) {
+    if(token.getUserId() === 0){
+      router.navigate(['/']);
+    }
   }
 
 

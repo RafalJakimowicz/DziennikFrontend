@@ -66,7 +66,9 @@ export class PresenceTableComponent implements OnInit {
     console.log('Zatwierdzono obecność:', {
       group: this.selectedGroup,
       date: this.attendanceDate,
-      students: this.students
+      students: this.students,
+      text: this.lessonSubject,
+      text2: this.lessonRoom
     });
   }
 

@@ -20,11 +20,11 @@ export class UserApiService {
   constructor(private tokenService: WebTokenService, private http: HttpClient) { }
 
   header = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' };
-  baseUrl = 'http://localhost:8080/api/users';
+  baseUrl = 'http://localhost:8080/api/private/users';
 
   getMyUser(): Observable<User> {
-    this.header["Authorization"] = 'Brearer ' + this.tokenService.getToken();
+    this.header["Authorization"] = 'Bearer ' + this.tokenService.getToken()?.token;
     const getUrl = `${this.baseUrl}/me`;
-    return this.http.get<User>(getUrl, {headers: this.header});
+    return this.http.post<User>(getUrl, this.tokenService.getToken() ,{headers: this.header});
   }
 }

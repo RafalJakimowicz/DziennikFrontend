@@ -30,8 +30,13 @@ export class LoginComponent {
           this.tokenService.setToken(token);
           // now the subject has the new token…
           console.log('After login:', this.tokenService.getToken());
-          this.userService.getMyUser().subscribe({next: user => {this.tokenService.setUserId(user.id)}})
-          this.redirectToHome()
+          this.userService.getMyUser().subscribe(
+            {
+              next: user => {
+                this.tokenService.setUserId(user.id)
+                this.redirectToHome();
+              }
+            });
         },
         error: err => console.error(err)
       });

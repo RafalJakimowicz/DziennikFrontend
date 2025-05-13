@@ -29,7 +29,7 @@ export class GroupApiService {
   public getUserGroups(): Observable<Group[]> {
     this.header["Authorization"] = `Bearer ${this.tokenService.getToken()?.token}`;
     //const getUrl: string = `${this.baseUrl}/my/${this.tokenService.getUserId()}`;
-    const getUrl: string = `${this.baseUrl}/my/${152}`;
+    const getUrl: string = `${this.baseUrl}/my/${this.tokenService.getUserId()}`;
     return this.http.get<Group[]>(getUrl, { headers: this.header });
   }
 
