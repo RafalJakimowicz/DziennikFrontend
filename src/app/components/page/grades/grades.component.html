@@ -1,18 +1,33 @@
-<div id="grades-container">
-  <aside class="sidebar">
-    <nav>
-      <ul>
-        @for(group of groups; track groups){
-          <li><a>{{group}}</a></li>
-        }
-        <li><a >Oceny</a></li>
-        <li><a >Plan lekcji</a></li>
-        <li><a >Obecności</a></li>
-        <li><a >Strona główna</a></li>
-      </ul>
-    </nav>
-  </aside>
-  <main class="main-panel">
-    <p>Grades</p>
-  </main>
-</div>
+<section id="grades-wrapper">
+  <div id="grades-header">Oceny</div>
+
+  <div id="grades-panel">
+    <div>
+      <label for="group-select">Klasa:</label>
+      <select id="group-select" [(ngModel)]="selectedGroup">
+        <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
+      </select>
+    </div>
+
+    <div>
+      <button id="add-grade-button" (click)="onAddGrade()">Dodaj ocenę</button>
+    </div>
+  </div>
+
+  <table id="grades-table">
+    <thead>
+    <tr>
+      <th>Uczeń</th>
+      <th>Oceny</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of students">
+    <td>{{ student.name }}</td>
+    <td>
+      <span *ngFor="let grade of student.grades" class="grade-badge">{{ grade }}</span>
+    </td>
+    </tr>
+    </tbody>
+  </table>
+</section>

@@ -4,8 +4,8 @@
   <div id="control-panel">
     <div>
       <label for="group-select">Klasa</label>
-      <select id="group-select" [(ngModel)]="selectedGroup">
-        <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
+      <select id="group-select" [(ngModel)]="selectedGroup" (change)="onOptionChanged($event)">
+        <option *ngFor="let group of groups" [ngValue]="group">{{ group.code }}</option>
       </select>
     </div>
 
@@ -16,7 +16,18 @@
 
     <div>
       <button id="submit-button" (click)="submitAttendance()">Zapisz</button>
+    </div><br>
+
+    <div>
+      <label for="lesson-name">Temat Zajęć</label>
+      <input type="text" id="lesson-name" value="Temat" [value]="lessonSubject">
     </div>
+
+    <div>
+      <label for="room-number">Numer Sali</label>
+      <input type="text" id="room-number" value="Numer Sali" [value]="lessonRoom">
+    </div>
+
   </div>
 </section>
 
@@ -32,7 +43,7 @@
     <tbody>
     <tr *ngFor="let student of students; let i = index">
       <td>{{ i + 1 }}</td>
-      <td>{{ student.name }}</td>
+      <td>{{ student.name }} {{student.surname}}</td>
       <td>
         <select class="select-status" [(ngModel)]="student.status" name="status-{{ i }}">
           <option value="obecny">Obecny</option>

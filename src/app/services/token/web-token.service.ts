@@ -20,8 +20,13 @@ export class WebTokenService {
 
   readonly userId$: Observable<number | null> = this._userId$.asObservable();
 
-  getUserId(): number | null {
-    return this._userId$.value;
+  getUserId(): number  {
+    let id =  this._userId$.value;
+    if (id != null) {
+      return id;
+    } else {
+      return 0;
+    }
   }
 
   setUserId(user_id: number | null): void {
