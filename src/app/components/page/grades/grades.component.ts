@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {Router} from '@angular/router';
+import {WebTokenService} from '../../../services/token/web-token.service';
+import {AuthApiService} from '../../../services/auth/auth-api.service';
+import {UserApiService} from '../../../services/user/user-api.service';
 
 interface Student {
   id: number;
@@ -16,6 +20,9 @@ interface Student {
   styleUrls: ['./grades.component.css']
 })
 export class GradesComponent {
+
+  constructor(private router: Router, private tokenService: WebTokenService, private authService: AuthApiService, private userService: UserApiService) { }
+
   groups: string[] = ['1A', '1B', '2A'];
   selectedGroup: string = '1A';
 
@@ -28,8 +35,7 @@ export class GradesComponent {
     { id: 6, name: 'Agnieszka Kaczmarek', grades: [3, 5, 5, 5] }
   ];
 
-  onAddGrade(): void {
-    console.log('Dodaj ocenę kliknięty');
-    // TODO: otwórz modal / formularz do dodania oceny
+  redirectToAddGrades(){
+    this.router.navigate(['/add-grade']);
   }
 }

@@ -1,1 +1,48 @@
-<p>add-grade works!</p>
+<section id="control-wrapper">
+  <div id="control-header">Dodaj Oceny</div>
+
+  <div id="control-panel">
+    <div>
+      <label for="group-select">Klasa</label>
+      <select id="group-select" [(ngModel)]="selectedGroup" (change)="onOptionChanged()">
+        <option *ngFor="let group of groups" [ngValue]="group">{{ group.code }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="attendance-date">Data</label>
+      <input type="date" id="attendance-date" [(ngModel)]="selectedDate">
+    </div>
+
+    <div>
+      <button id="submit-button" (click)="submitGrade()">Zapisz</button>
+    </div><br>
+
+    <div>
+      <label for="comment">Komentarz</label>
+      <input type="text" id="comment" placeholder="Komentarz" name="gradeComment" [(ngModel)]="gradeComment">
+    </div>
+
+  </div>
+</section>
+
+<section id="grades-list">
+  <table id="grades-table">
+    <thead>
+    <tr>
+      <th>Lp.</th>
+      <th>Uczeń</th>
+      <th>Ocena</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of students; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ student.name }} {{student.surname}}</td>
+      <td>
+        <input type="number" min="1" max="100" step="1">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>

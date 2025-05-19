@@ -1,0 +1,150 @@
+:host {
+  display: block;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f6f8fc;
+  padding: 20px;
+}
+
+/* Wrapper panelu sterowania */
+#control-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Górny pasek nagłówka */
+#control-header {
+  background-color: #3b6eea;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Białe pole z selektorem klasy, datą i przyciskiem */
+#control-panel {
+  background-color: #ffffff;
+  color: #333;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+#control-panel label {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+#control-panel select,
+#control-panel input[type="date"] {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Przycisk Zapisz */
+#submit-button {
+  padding: 10px 20px;
+  background-color: #3b6eea;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#submit-button:hover {
+  background-color: #2f57c8;
+}
+
+/* Sekcja z listą obecności */
+#grades-list {
+  max-width: 900px;
+  margin: 30px auto 0 auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* Tabela */
+#grades-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+#grades-table thead {
+  background-color: #f0f3f9;
+  border-bottom: 1px solid #dbe1ec;
+}
+
+#grades-table th,
+#grades-table td {
+  text-align: left;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e3e8f0;
+}
+
+#grades-table th {
+  color: #333;
+  font-weight: 600;
+}
+
+#grades-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Styl selectów w wierszach uczniów */
+.select-status {
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #ffffff;
+}
+
+/* Responsywność dla mobile */
+@media screen and (max-width: 600px) {
+  #control-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #grades-table thead {
+    display: none;
+  }
+
+  #grades-table, tbody, tr, td {
+    display: block;
+    width: 100%;
+  }
+
+  #grades-table tr {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+  }
+
+  #grades-table td {
+    padding-left: 50%;
+    position: relative;
+    text-align: left;
+  }
+
+  #grades-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    font-weight: bold;
+    color: #333;
+  }
+}
