@@ -12,8 +12,8 @@ export const routes: Routes = [
     path: '',
     pathMatch: 'full',
     loadComponent: () => import(
-      './components/login/login.component'
-      ).then((m) => m.LoginComponent)
+      './components/page/home/home.component'
+      ).then((m) => m.HomeComponent)
   },
   {
     path:'register',
@@ -32,5 +32,11 @@ export const routes: Routes = [
     loadComponent: () => import(
         './components/page/home/home.component'
       ).then((m) => m.HomeComponent),
-  }
-];
+  },
+  {
+path:'add-grade',
+  loadComponent: () => import(
+  './components/page/add-grade/add-grade.component'
+  ).then((m) => m.AddGradeComponent)
+},
+]
