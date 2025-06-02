@@ -34,9 +34,9 @@ export class LessonApiService {
     currentTime: Date = new Date()
   ): [string, string] {
     const MS_PER_MIN = 60_000;
-    const BLOCK_MIN  = 90;
+    const BLOCK_MIN  = 105;
     const BREAK_MIN  = 15;
-    const CYCLE_MIN  = BLOCK_MIN + BREAK_MIN;  // 105
+    const CYCLE_MIN  = BLOCK_MIN + BREAK_MIN;  // 120
 
     const anchor = new Date(currentTime);
     anchor.setHours(7, 30, 0, 0);              // 07:30:00.000 local time

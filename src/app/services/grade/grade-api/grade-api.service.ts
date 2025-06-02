@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { WebTokenService } from '../../../services/token/web-token.service';
+import { WebTokenService } from '../../token/web-token.service';
 
 export interface Grade {
   id: number;
   studentId: number;
-  score: number;
-  comment: string;
   userId: number;
-  date: string;
   groupId: number;
+  score: string;
+  comment: string;
+  date: string
 }
 
 @Injectable({

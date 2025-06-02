@@ -40,7 +40,11 @@
       <td>{{ i + 1 }}</td>
       <td>{{ student.name }} {{student.surname}}</td>
       <td>
-        <input type="number" min="1" max="100" step="1">
+        <input  type="number"
+                min="1" max="100" step="1"
+                [(ngModel)]="grades[i]"
+                [ngModelOptions]="{ standalone: true }"
+        (ngModelChange)="coerceNumber(i, $event)" />
       </td>
     </tr>
     </tbody>

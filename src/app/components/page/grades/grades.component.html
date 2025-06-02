@@ -4,8 +4,8 @@
   <div id="grades-panel">
     <div>
       <label for="group-select">Klasa:</label>
-      <select id="group-select" [(ngModel)]="selectedGroup">
-        <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
+      <select id="group-select" [(ngModel)]="selectedGroup" (change)="onOptionChanged($event)">
+        <option *ngFor="let group of groups" [ngValue]="group">{{ group.code }}</option>
       </select>
     </div>
 
@@ -22,10 +22,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let student of students">
-    <td>{{ student.name }}</td>
+    <tr *ngFor="let student of studentAndGrade">
+    <td>{{ student.student.name }} {{student.student.surname}}</td>
     <td>
-      <span *ngFor="let grade of student.grades" class="grade-badge">{{ grade }}</span>
+      <span *ngFor="let grade of student.gradeOfStudent" class="grade-badge">{{ grade.score}}</span>
     </td>
     </tr>
     </tbody>

@@ -17,7 +17,8 @@ export class AddGradeComponent implements OnInit {
   groups: Group[] = [];
   students: Student[] = [];
   selectedGroup: Group | null = null;
-  selectedDate: string = new Date().toISOString().split('T')[0];
+  date: string = new Date().toISOString().split('.')[0];
+  selectedDate: string = this.date.split('T')[0];
   gradeComment: string = '';
   grades: number[] = [];
 
@@ -56,6 +57,11 @@ export class AddGradeComponent implements OnInit {
     });
   }
 
+  coerceNumber(idx: number, val: string | number): void {
+    // valueAsNumber would be NaN on empty input; default to 0 or leave undefined
+    this.grades[idx] = Number(val) || 0;
+  }
+
   submitGrade(): void {
     if (!this.selectedGroup) return;
 
@@ -64,10 +70,12 @@ export class AddGradeComponent implements OnInit {
       studentId: student.id,
       userId: this.token.getUserId(),
       groupId: this.selectedGroup!.id,
-      score: this.grades[index],
+      score: this.grades[index].toFixed(2),
       comment: this.gradeComment,
-      date: this.selectedDate
+      date: this.date
     }));
+
+    console.log(this.grades);
 
     for (const grade of payload) {
       this.gradeService.addGrade(grade).subscribe({

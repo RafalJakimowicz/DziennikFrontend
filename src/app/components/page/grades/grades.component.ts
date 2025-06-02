@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {Router} from '@angular/router';
 import {WebTokenService} from '../../../services/token/web-token.service';
 import {AuthApiService} from '../../../services/auth/auth-api.service';
 import {UserApiService} from '../../../services/user/user-api.service';
+import {Group, GroupApiService} from '../../../services/group/group-api.service';
+import {Student} from '../../../services/student/student-api.service';
+import {Grade, GradeApiService} from '../../../services/grade/grade-api/grade-api.service';
 
-interface Student {
-  id: number;
-  name: string;
-  grades: number[];
+export interface StudentWithGrade{
+  student: Student;
+  gradeOfStudent: Grade[];
 }
 
 @Component({
@@ -19,23 +21,73 @@ interface Student {
   templateUrl: './grades.component.html',
   styleUrls: ['./grades.component.css']
 })
-export class GradesComponent {
+export class GradesComponent implements OnInit {
 
-  constructor(private router: Router, private tokenService: WebTokenService, private authService: AuthApiService, private userService: UserApiService) { }
+  constructor(private router: Router, private gradeService: GradeApiService,private tokenService: WebTokenService, private authService: AuthApiService, private userService: UserApiService, private groupService: GroupApiService) { }
+  studentAndGrade: StudentWithGrade[] = [];
+  groups: Group[] = [];
+  selectedGroup = this.groups[0];
 
-  groups: string[] = ['1A', '1B', '2A'];
-  selectedGroup: string = '1A';
+  allGrades: Grade[] = [];
 
-  students: Student[] = [
-    { id: 1, name: 'Jan Kowalski', grades: [4, 3, 5, 6] },
-    { id: 2, name: 'Anna Nowak', grades: [5, 5, 4, 4] },
-    { id: 3, name: 'Piotr Wiśniewski', grades: [3, 4, 3, 3] },
-    { id: 4, name: 'Maria Dąbrowska', grades: [6, 5, 6, 5] },
-    { id: 5, name: 'Tomasz Wójcik', grades: [4, 2] },
-    { id: 6, name: 'Agnieszka Kaczmarek', grades: [3, 5, 5, 5] }
-  ];
+  students: Student[] = [];
 
   redirectToAddGrades(){
     this.router.navigate(['/add-grade']);
+  }
+
+  ngOnInit() {
+    this.groupService.getUserGroups().subscribe(
+      {
+        next: groups => {
+          this.groups = groups;
+          this.selectedGroup = groups[0];
+        },
+        error: error => {
+          console.log(error);
+          this.groups = [];
+        }
+      }
+    );
+  }
+
+  onOptionChanged($event: Event) {
+    if (!this.selectedGroup) return;
+    this.studentAndGrade = []
+
+    var studentsGrades: Grade[] = [];
+    console.log(this.selectedGroup);
+    this.groupService.getStudentsInGroup(this.selectedGroup.id).subscribe(
+      {
+        next: result => {
+          this.students = result;
+          this.gradeService.getGradesByGroup(this.selectedGroup.id).subscribe(
+            {
+              next: r => {
+                studentsGrades = r;
+                for (var i = 0; i < this.students.length; i++) {
+                  let studentwithgrade = {
+                    student: this.students[i],
+                    gradeOfStudent: new Array<Grade>()
+                  }
+                  for(var j = 0; j < studentsGrades.length; j++) {
+                    if(this.students[i].id == studentsGrades[j].studentId){
+                      studentwithgrade.gradeOfStudent.push(studentsGrades[j]);
+                    }
+                  }
+                  this.studentAndGrade.push(studentwithgrade);
+                }
+              },
+              error: error => {
+                console.log(error);
+              }
+            }
+          )
+        },
+        error: error => {
+          console.log(error);
+        }
+      }
+    )
   }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {Lesson, LessonApiService} from '../../../services/lesson/lesson-api.service';
 
 @Component({
   standalone: true,
@@ -18,14 +19,14 @@ export class ClassesCalendarComponent {
     '16:00', '17:00', '18:00', '19:00'
   ];
 
-  lessons: any[] = [];
+  lessons: Lesson[] = [];
 
-  constructor() {
+  constructor(private lessonApi: LessonApiService) {
     const today = new Date();
     const { week, year } = this.getWeekNumber(today);
     this.currentWeek = week;
     this.currentYear = year;
-    this.loadSampleLessons();
+    this.loadLessons();
   }
 
   changeWeek(offset: number) {
@@ -34,25 +35,31 @@ export class ClassesCalendarComponent {
     const { week, year } = this.getWeekNumber(newDate);
     this.currentWeek = week;
     this.currentYear = year;
-    this.loadSampleLessons();
+    this.loadLessons();
   }
 
   onWeekChange(event: any) {
     const [year, week] = event.target.value.split('-W').map(Number);
     this.currentWeek = week;
     this.currentYear = year;
-    this.loadSampleLessons();
+    this.loadLessons();
+  }
+
+  loadLessons(){
+    this.lessonApi.getLessons().subscribe((lessons: Lesson[]) => {
+      this.lessons = lessons;
+    });
   }
 
   loadSampleLessons() {
-    this.lessons = [
-      { subject: 'ASDFASFD', day: 'Poniedziałek', startTime: '08:00', endTime: '09:30' },
-      { subject: 'ASDFfdfdf d fas dfasd fasdf dfASFD', day: 'Poniedziałek', startTime: '10:00', endTime: '11:30' },
-      { subject: 'FGASG', day: 'Wtorek', startTime: '10:00', endTime: '11:30' },
-      { subject: 'HFGH', day: 'Środa', startTime: '12:00', endTime: '14:00' },
-      { subject: 'WAGAF', day: 'Czwartek', startTime: '08:00', endTime: '09:00' },
-      { subject: 'SDFGSD', day: 'Piątek', startTime: '13:00', endTime: '14:30' }
-    ];
+    //this.lessons = [
+    //  { subject: 'ASDFASFD', day: 'Poniedziałek', startTime: '08:00', endTime: '09:30' },
+    //  { subject: 'ASDFfdfdf d fas dfasd fasdf dfASFD', day: 'Poniedziałek', startTime: '10:00', endTime: '11:30' },
+    //  { subject: 'FGASG', day: 'Wtorek', startTime: '10:00', endTime: '11:30' },
+    //  { subject: 'HFGH', day: 'Środa', startTime: '12:00', endTime: '14:00' },
+    //  { subject: 'WAGAF', day: 'Czwartek', startTime: '08:00', endTime: '09:00' },
+    //  { subject: 'SDFGSD', day: 'Piątek', startTime: '13:00', endTime: '14:30' }
+    //];
   }
 
   getLessonsForDay(day: string) {
