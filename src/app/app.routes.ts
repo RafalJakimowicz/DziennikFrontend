@@ -12,8 +12,8 @@ export const routes: Routes = [
     path: '',
     pathMatch: 'full',
     loadComponent: () => import(
-      './components/page/home/home.component'
-      ).then((m) => m.HomeComponent)
+      './components/login/login.component'
+      ).then((m) => m.LoginComponent)
   },
   {
     path:'register',

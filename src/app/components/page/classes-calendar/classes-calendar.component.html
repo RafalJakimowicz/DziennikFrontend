@@ -1,32 +1,44 @@
 <div id="calendar-header">Plan lekcji</div>
+
 <div class="calendar-controls">
   <button (click)="changeWeek(-1)">← Poprzedni tydzień</button>
-  <input type="week"
-         [value]="currentYear + '-W' + (currentWeek < 10 ? '0' + currentWeek : currentWeek)"
-         (change)="onWeekChange($event)">
+
+  <input
+    type="week"
+    [value]="currentYear + '-W' + (currentWeek < 10 ? '0' + currentWeek : currentWeek)"
+    (change)="onWeekChange($event)"
+  />
+
   <button (click)="changeWeek(1)">Następny tydzień →</button>
 </div>
 
-<div class="calendar-container">
-  <div class="time-column">
-    <div class="corner-cell"></div>
-    <div *ngFor="let hour of hours" class="time-slot">{{ hour }}</div>
+<!-- ───────────  GRID  (days = rows) ─────────── -->
+<div class="calendar-horizontal">
+  <!-- hours header -->
+  <div class="hours-row">
+    <div class="corner"></div>
+    <ng-container *ngFor="let h of hours">
+      <div class="hour-cell">{{ h }}</div>
+    </ng-container>
   </div>
 
-  <div class="day-columns">
-    <div *ngFor="let day of days" class="day-column">
-      <div class="day-header">{{ day }}</div>
-      <div class="day-body">
-        <div *ngFor="let lesson of getLessonsForDay(day)"
-             class="lesson-block"
-             [ngStyle]="{
-               'top': getTopOffset(lesson.startTime),
-               'height': getBlockHeight(lesson.startTime, lesson.endTime)
-             }">
-          {{ lesson.subject }}<br>
-          {{ lesson.startTime }} - {{ lesson.endTime }}
+  <!-- one row per day -->
+  <div *ngFor="let day of days; index as i" class="day-row">
+    <div class="day-label">{{ day }}</div>
+
+    <div class="day-body">
+      <ng-container *ngFor="let lesson of getLessonsForDay(i + 1)">
+        <div
+          class="lesson-block"
+          [style.left]="getLeft(lesson.start)"
+          [style.width]="getWidth(lesson.start, lesson.end)"
+          [title]="lesson.subject + ' (' + lesson.room + ')'"
+        >
+          <strong>{{ lesson.subject }}</strong><br />
+          {{ lesson.start | date: 'HH:mm' }}-{{ lesson.end | date: 'HH:mm' }}<br />
+          s. {{ lesson.room }}
         </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </div>

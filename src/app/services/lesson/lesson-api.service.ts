@@ -79,7 +79,7 @@ export class LessonApiService {
   }
 
   getLessons(): Observable<Lesson[]> {
-    this.header['Authorization'] = `Bearer ${this.token.getToken()}`;
+    this.header['Authorization'] = `Bearer ${this.token.getToken()?.token}`;
     return this.http.get<Lesson[]>(this.baseUrl, {headers: this.header});
   }
 }
